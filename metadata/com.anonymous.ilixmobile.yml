@@ -4,6 +4,6 @@ Categories:
 CurrentVersionCode: 2147483647
 IssueTracker: ""
 Name: ilix
-SourceCode: ""
-Summary: ""
-WebSite: ""
+SourceCode: "https://github.com/Ilingu/ilix/tree/main/apps/ilix-mobile"
+Summary: "Pixel File Transfer cloud (api in rust)"
+WebSite: "https://github.com/Ilingu/ilix"
