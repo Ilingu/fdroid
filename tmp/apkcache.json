@@ -1,0 +1,72 @@
+{
+  "METADATA_VERSION": 20002,
+  "allow_disabled_algorithms": false,
+  "ilix.apk": {
+    "hash": "9d7ef9a50ffd232cde47d4d3dd49c5b9b15dd80b97374018d88a018e72ebd419",
+    "hashType": "sha256",
+    "uses-permission": [
+      [
+        "android.permission.CAMERA",
+        null
+      ],
+      [
+        "android.permission.INTERNET",
+        null
+      ],
+      [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        null
+      ],
+      [
+        "android.permission.RECORD_AUDIO",
+        null
+      ],
+      [
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        null
+      ],
+      [
+        "android.permission.VIBRATE",
+        null
+      ],
+      [
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        null
+      ],
+      [
+        "android.permission.USE_BIOMETRIC",
+        null
+      ],
+      [
+        "android.permission.USE_FINGERPRINT",
+        null
+      ],
+      [
+        "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE",
+        null
+      ]
+    ],
+    "uses-permission-sdk-23": [],
+    "features": [],
+    "icons_src": {},
+    "icons": {},
+    "antiFeatures": [],
+    "packageName": "com.anonymous.ilixmobile",
+    "versionCode": 1,
+    "name": "ilix",
+    "versionName": "0.0.1",
+    "minSdkVersion": 21,
+    "targetSdkVersion": 33,
+    "nativecode": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "sig": "b426996240dbd9ca63a816ad1cc00566",
+    "signer": "09a23d167ba0f8cdae2809cf64196266080a9a2a0c2f28de83a639ba2538b163",
+    "size": 31560630,
+    "apkName": "ilix.apk",
+    "added": 1691343674.242333
+  }
+}
