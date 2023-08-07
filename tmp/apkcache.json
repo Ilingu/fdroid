@@ -2,7 +2,7 @@
   "METADATA_VERSION": 20002,
   "allow_disabled_algorithms": false,
   "ilix.apk": {
-    "hash": "d4e464e26530d48c57bc979df18d2a87d5652f0e895742a6a31b279de005bfb5",
+    "hash": "5a18f5b00a3186c8f6d5e7969cf29be7044f184d65456cbec37dd87fbd9207c7",
     "hashType": "sha256",
     "uses-permission": [
       [
@@ -54,7 +54,7 @@
     "packageName": "com.anonymous.ilixmobile",
     "versionCode": 1,
     "name": "ilix",
-    "versionName": "0.0.1",
+    "versionName": "1.0.2",
     "minSdkVersion": 21,
     "targetSdkVersion": 33,
     "nativecode": [
@@ -65,8 +65,8 @@
     ],
     "sig": "b426996240dbd9ca63a816ad1cc00566",
     "signer": "09a23d167ba0f8cdae2809cf64196266080a9a2a0c2f28de83a639ba2538b163",
-    "size": 31560636,
+    "size": 31560447,
     "apkName": "ilix.apk",
-    "added": 1691347434.326535
+    "added": 1691381991.793649
   }
 }
