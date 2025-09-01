@@ -67,18 +67,42 @@
     "signer": "09a23d167ba0f8cdae2809cf64196266080a9a2a0c2f28de83a639ba2538b163",
     "size": 31560447,
     "apkName": "ilix.apk",
-    "added": 1691381991.793649
+    "added": 1756761153.323116
   },
-  "categories.txt": {
-    "name": "categories",
-    "apkName": "categories.txt",
-    "hash": "46bd0985bfaad4ab3dcfaf2150a847d11012eadc7034a98e1fa2ec1a649d4159",
+  "com.ilingu.fosstoon.apk": {
+    "hash": "c8c563c749f040298cff4964768ee398d151496bfc616ad16bc8cb8338777edf",
     "hashType": "sha256",
-    "ipfsCIDv1": null,
-    "versionCode": 0,
-    "versionName": "46bd098",
-    "packageName": "46bd0985bfaad4ab3dcfaf2150a847d11012eadc7034a98e1fa2ec1a649d4159",
-    "size": 7,
-    "added": 1756760267.068946
+    "uses-permission": [
+      [
+        "android.permission.INTERNET",
+        null
+      ],
+      [
+        "com.ilingu.fosstoon.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+        null
+      ]
+    ],
+    "uses-permission-sdk-23": [],
+    "features": [],
+    "icons_src": {},
+    "icons": {},
+    "antiFeatures": {},
+    "packageName": "com.ilingu.fosstoon",
+    "versionCode": 1000,
+    "name": "fosstoon",
+    "versionName": "0.1.0",
+    "minSdkVersion": 24,
+    "targetSdkVersion": 36,
+    "nativecode": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "sig": "668bc27f5859a511d9663f7b8f28e585",
+    "signer": "a153a1dff8d854bfe772bc496c782f65fa03a05b3d12e48e132f34277134d229",
+    "size": 69457467,
+    "apkName": "com.ilingu.fosstoon.apk",
+    "added": 1756762425.477849
   }
 }

@@ -3,7 +3,7 @@
 # your system configuration.
 
 # Custom path to the Android SDK, defaults to $ANDROID_HOME
-sdk_path: /usr/lib/android-sdk
+sdk_path: $ANDROID_HOME
 
 # Paths to installed versions of the Android NDK.  This will be
 # automatically filled out from well known sources like
@@ -60,6 +60,7 @@ repo_description: >-
 # As above, but for the archive repo.
 #
 # archive_url: https://f-droid.org/archive
+# archive_web_base_url:
 # archive_name: My First F-Droid Archive Demo
 # archive_description: >-
 #   The repository of older versions of packages from the main demo repository.
@@ -141,15 +142,15 @@ keystore: keystore.p12
 # different than the keypass below, it can be OK to store the password in this
 # file for real use. But in general, sensitive passwords should not be stored
 # in text files!
-keystorepass: 1/yEWG2Vr8cZ+3dY2ikdlwYrEWeNnek8zkt9yNJPaME=
+keystorepass: Ygk+TUh7q7p/WGdtSgJIfBOJ38xQdR9dwVDof3Je9eM=
 
 # The password for keys - the same is used for each auto-generated key as well
 # as for the repository key. You should not normally store this password in a
 # file since it is a sensitive password.
-keypass: 1/yEWG2Vr8cZ+3dY2ikdlwYrEWeNnek8zkt9yNJPaME=
+keypass: Ygk+TUh7q7p/WGdtSgJIfBOJ38xQdR9dwVDof3Je9eM=
 
 # The distinguished name used for all keys.
-keydname: CN=ilingu, OU=F-Droid
+keydname: CN=ilingu.com, O=Ilingu Ltd, C=FR
 # Use this to override the auto-generated key aliases with specific ones
 # for particular applications. Normally, just leave it empty.
 #
@@ -174,6 +175,12 @@ keydname: CN=ilingu, OU=F-Droid
 # serverwebroot:
 #   - foo.com:/usr/share/nginx/www/fdroid
 #   - bar.info:/var/www/fdroid
+#
+# There is a special mode to only deploy the index file:
+#
+# serverwebroot:
+#   - url: 'me@b.az:/srv/fdroid'
+#     index_only: true
 
 # When running fdroid processes on a remote server, it is possible to
 # publish extra information about the status.  Each fdroid sub-command
@@ -187,14 +194,47 @@ keydname: CN=ilingu, OU=F-Droid
 # deploy_process_logs: true
 
 # The full URL to a git remote repository. You can include
-# multiple servers to mirror to by wrapping the whole thing in {} or [], and
-# including the servergitmirrors strings in a comma-separated list.
+# multiple servers to mirror to by adding strings to a YAML list or map.
 # Servers listed here will also be automatically inserted in the mirrors list.
 #
 # servergitmirrors: https://github.com/user/repo
 # servergitmirrors:
 #   - https://github.com/user/repo
 #   - https://gitlab.com/user/repo
+#
+# servergitmirrors:
+#   - url: https://github.com/user/repo
+#   - url: https://gitlab.com/user/repo
+#     index_only: true
+
+# These settings allow using `fdroid deploy` for publishing APK files from
+# your repository to GitHub Releases. (You should also run `fdroid update`
+# every time before deploying to GitHub releases to update index files.) Here's
+# an example for this deployment automation:
+# https://github.com/f-droid/fdroidclient/releases/
+#
+# Currently, versions which are assigned to a release channel (e.g. alpha or
+# beta releases) are ignored.
+#
+# In the example below, tokens are read from environment variables. Putting
+# tokens directly into the config file is also supported but discouraged. It is
+# highly recommended to use a "Fine-grained personal access token", which is
+# restricted to the minimum required permissions, which are:
+#  * Metadata - read
+#  * Contents - read/write
+# (https://github.com/settings/personal-access-tokens/new)
+#
+# github_token: {env: GITHUB_TOKEN}
+# github_releases:
+#   - projectUrl: https://github.com/f-droid/fdroidclient
+#     packageNames:
+#       - org.fdroid.basic
+#       - org.fdroid.fdroid
+#     release_notes_prepend: |
+#       Re-post of official F-Droid App release from https://f-droid.org
+#   - projectUrl: https://github.com/example/app
+#     packageNames: com.example.app
+#     token: {env: GITHUB_TOKEN_EXAMPLE}
 
 # Most git hosting services have hard size limits for each git repo.
 # `fdroid deploy` will delete the git history when the git mirror repo
@@ -215,6 +255,17 @@ keydname: CN=ilingu, OU=F-Droid
 # mirrors:
 #   - https://foo.bar/fdroid
 #   - http://foobarfoobarfoobar.onion/fdroid
+#
+# Or additional metadata can also be included by adding key/value pairs:
+#
+# mirrors:
+#   - url: https://foo.bar/fdroid
+#     countryCode: BA
+#   - url: http://foobarfoobarfoobar.onion/fdroid
+#
+# The list of mirrors can also be maintained in config/mirrors.yml, a
+# standalone YAML file in the optional configuration directory.  In
+# that case, mirrors: should be removed from this file (config.yml).
 
 # optionally specify which identity file to use when using rsync or git over SSH
 #
@@ -237,10 +288,20 @@ keydname: CN=ilingu, OU=F-Droid
 #
 # sync_from_local_copy_dir: true
 
-# To upload the repo to an Amazon S3 bucket using `fdroid server
-# update`.  Warning, this deletes and recreates the whole fdroid/
-# directory each time. This prefers s3cmd, but can also use
-# apache-libcloud.  To customize how s3cmd interacts with the cloud
+# To upload the repo to an Amazon S3 bucket using `fdroid deploy'
+# . rclone, s3cmd and apache libcloud are the available options.
+# If rclone and s3cmd are not installed, apache libcloud is used.
+# To use apache libcloud, add the following options to this file
+# (config.yml)
+#
+# awsbucket: myawsfdroid
+# awsaccesskeyid: SEE0CHAITHEIMAUR2USA
+# awssecretkey: {env: awssecretkey}
+#
+# In case s3cmd is installed and rclone is not installed,
+# s3cmd will be the preferred sync option.
+# It will delete and recreate the whole fdroid directory each time.
+# To customize how s3cmd interacts with the cloud
 # provider, create a 's3cfg' file next to this file (config.yml), and
 # those settings will be used instead of any 'aws' variable below.
 # Secrets can be fetched from environment variables to ensure that
@@ -249,6 +310,47 @@ keydname: CN=ilingu, OU=F-Droid
 # awsbucket: myawsfdroid
 # awsaccesskeyid: SEE0CHAITHEIMAUR2USA
 # awssecretkey: {env: awssecretkey}
+#
+# In case rclone is installed and s3cmd is not installed,
+# rclone will be the preferred sync option.
+# It will sync the local folders with remote folders without
+# deleting anything in one go.
+# To ensure success, install rclone as per
+# the instructions at https://rclone.org/install/ and also configure for
+# object storage services as detailed at https://rclone.org/s3/#configuration
+# By default rclone uses the configuration file at ~/.config/rclone/rclone.conf
+# To specify a custom configuration file, please add the full path to the
+# configuration file as below
+#
+# path_to_custom_rclone_config: /home/mycomputer/somedir/example.conf
+#
+# This setting will ignore the default rclone config found at
+# ~/.config/rclone/rclone.conf
+#
+# Please note that rclone_config can be assigned a string or list
+#
+# awsbucket: myawsfdroid
+# rclone_config: aws-sample-config
+#
+# or
+#
+# awsbucket: myawsfdroid
+# rclone_config: [aws-sample-config, rclone-supported-service-config]
+#
+# In case both rclone and s3cmd are installed, the preferred sync
+# tool can be specified in this file (config.yml)
+# if s3cmd is preferred, set it as below
+#
+# s3cmd: true
+#
+# if rclone is preferred, set it as below
+#
+# rclone: true
+#
+# Please note that only one can be set to true at any time
+# Also, in the event that both s3cmd and rclone are installed
+# and both are missing from the config.yml file, the preferred
+# tool will be s3cmd.
 
 # If you want to force 'fdroid server' to use a non-standard serverwebroot.
 # This will allow you to have 'serverwebroot' entries which do not end in
@@ -276,11 +378,6 @@ keydname: CN=ilingu, OU=F-Droid
 # which this machine where `fdroid update` is run has already been
 # configured to allow push access (e.g. ssh key, username/password, etc)
 # binary_transparency_remote: git@gitlab.com:fdroid/binary-transparency-log.git
-
-# If you want to keep the "added" and "last updated" dates for each
-# app and APK in your repo, enable this.  The name comes from an old
-# system for tracking statistics that is no longer included.
-# update_stats: true
 
 # Set this to true to always use a build server. This saves specifying the
 # --server option on dedicated secure build server hosts.
@@ -343,3 +440,9 @@ keydname: CN=ilingu, OU=F-Droid
 #   - suss
 #   - exodus
 #   - https://example.com/signatures.json
+
+# The scanner can use signature sources from the internet. These are
+# cached locally.  To force them to be refreshed from the network on
+# every run, set this to true:
+#
+# refresh_scanner: true
