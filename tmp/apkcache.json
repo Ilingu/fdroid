@@ -50,7 +50,7 @@
     "features": [],
     "icons_src": {},
     "icons": {},
-    "antiFeatures": [],
+    "antiFeatures": {},
     "packageName": "com.anonymous.ilixmobile",
     "versionCode": 1,
     "name": "ilix",
@@ -68,5 +68,17 @@
     "size": 31560447,
     "apkName": "ilix.apk",
     "added": 1691381991.793649
+  },
+  "categories.txt": {
+    "name": "categories",
+    "apkName": "categories.txt",
+    "hash": "46bd0985bfaad4ab3dcfaf2150a847d11012eadc7034a98e1fa2ec1a649d4159",
+    "hashType": "sha256",
+    "ipfsCIDv1": null,
+    "versionCode": 0,
+    "versionName": "46bd098",
+    "packageName": "46bd0985bfaad4ab3dcfaf2150a847d11012eadc7034a98e1fa2ec1a649d4159",
+    "size": 7,
+    "added": 1756760267.068946
   }
 }
