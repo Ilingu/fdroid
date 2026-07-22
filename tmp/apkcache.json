@@ -70,7 +70,7 @@
     "added": 1756761153.323116
   },
   "com.ilingu.fosstoon.apk": {
-    "hash": "00e9c6d3609a34f5b28ab98c311dbc8658b0d6984aaf4a95675cbd52994cb216",
+    "hash": "4d036e42b93e04eb23914a1a0b0236caf152f92e3a39440439b6de6a6c15be54",
     "hashType": "sha256",
     "uses-permission": [
       [
@@ -88,9 +88,9 @@
     "icons": {},
     "antiFeatures": {},
     "packageName": "com.ilingu.fosstoon",
-    "versionCode": 1001000,
+    "versionCode": 1002000,
     "name": "fosstoon",
-    "versionName": "1.1.0",
+    "versionName": "1.2.0",
     "minSdkVersion": 24,
     "targetSdkVersion": 36,
     "nativecode": [
@@ -98,7 +98,7 @@
     ],
     "sig": "6f90396872f95456a25adc28ec54712f",
     "signer": "c18f159e0b58647bcec050d9f6e70bfb7a7fdcb2553a5435c9521b6053c38c90",
-    "size": 21395373,
+    "size": 19647749,
     "apkName": "com.ilingu.fosstoon.apk",
     "added": 1756762425.0
   }
